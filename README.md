@@ -1,6 +1,7 @@
 ArgentumTranslationBundle
 =========================
 
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/1a7517fa-5ff1-4954-a9ae-2b61a6a7b490/mini.png)](https://insight.sensiolabs.com/projects/1a7517fa-5ff1-4954-a9ae-2b61a6a7b490)
 [![Build Status](https://travis-ci.org/argentumua/ArgentumTranslationBundle.svg?branch=master)](https://travis-ci.org/argentumua/ArgentumTranslationBundle)
 [![Coverage Status](https://img.shields.io/coveralls/argentumua/ArgentumTranslationBundle.svg)](https://coveralls.io/r/argentumua/ArgentumTranslationBundle)
 [![Latest Stable Version](https://poser.pugx.org/argentum/translation-bundle/v/stable.svg)](https://packagist.org/packages/argentum/translation-bundle)
