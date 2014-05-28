@@ -1,0 +1,30 @@
+language: php
+
+php:
+  - 5.4
+  - 5.5
+  - hhvm
+
+matrix:
+  allow_failures:
+    - php: hhvm
+
+env:
+  - SYMFONY_VERSION=2.3.*
+  - SYMFONY_VERSION=2.4.*
+  - SYMFONY_VERSION=dev-master
+
+before_script:
+  - composer require -n symfony/framework-bundle:${SYMFONY_VERSION}
+  - composer install -n --dev
+
+script:
+  - mkdir -p build/logs
+  - phpunit --coverage-text --coverage-clover build/logs/clover.xml
+
+after_script:
+  - php vendor/bin/coveralls -v
+
+notifications:
+  email:
+    - javer@argentum.ua

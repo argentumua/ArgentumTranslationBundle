@@ -1,0 +1,70 @@
+imports:
+    - { resource: ../../../vendor/knplabs/doctrine-behaviors/config/orm-services.yml }
+
+parameters:
+    locale: ru
+    secret: CAtHam3PhEwUdEge
+    locales:
+        - ru
+        - uk
+        - en
+
+security:
+    providers:
+        in_memory:
+            memory:
+    firewalls:
+        main:
+            pattern:    /(.*)
+            context:    user
+            anonymous:  true
+
+framework:
+    esi:             ~
+    translator:      { fallback: "%locale%" }
+    secret:          "%secret%"
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: ~
+    form:            ~
+    csrf_protection: ~
+    validation:      { enable_annotations: true }
+    templating:
+        engines: ['twig']
+    default_locale:  "%locale%"
+    trusted_hosts:   ~
+    trusted_proxies: ~
+    session:
+        handler_id:  ~
+        storage_id: session.storage.filesystem
+        name: MOCKSESSID
+    fragments:       ~
+    http_method_override: true
+    test: ~
+    profiler:
+        collect: false
+
+twig:
+    debug:            "%kernel.debug%"
+    strict_variables: "%kernel.debug%"
+
+doctrine:
+    dbal:
+        driver:   pdo_sqlite
+        path:     %kernel.cache_dir%/test.db
+        charset:  UTF8
+    orm:
+        auto_generate_proxy_classes: "%kernel.debug%"
+        auto_mapping: true
+
+a2lix_translation_form:
+    locales: %locales%
+
+sonata_block:
+    default_contexts: [cms]
+
+liip_functional_test:
+    cache_sqlite_db: true
+
+argentum_translation:
+    locales: %locales%

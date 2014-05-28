@@ -1,0 +1,43 @@
+{
+    "name": "argentum/translation-bundle",
+    "type": "symfony-bundle",
+    "description": "Provides a database storage for translations and GUI for editing them",
+    "keywords": ["translation", "i18n", "doctrine2", "translatable", "sonata"],
+    "homepage": "http://argentum.ua",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Vadim Borodavko",
+            "email": "javer@argentum.ua",
+            "homepage": "https://github.com/javer"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "symfony/symfony": ">=2.3",
+        "symfony/framework-bundle": ">=2.3",
+        "symfony/monolog-bundle": ">=2.3",
+        "twig/twig": ">=1.10",
+        "doctrine/common": ">=2.2",
+        "doctrine/orm": ">=2.2",
+        "knplabs/doctrine-behaviors": ">=1.0",
+        "a2lix/translation-form-bundle": ">=2.0",
+        "sonata-project/admin-bundle": ">=2.0",
+        "sonata-project/doctrine-orm-admin-bundle": ">=2.2"
+    },
+    "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": ">=2.2",
+        "liip/functional-test-bundle": "1.0.*@dev",
+        "satooshi/php-coveralls": "dev-master"
+    },
+    "autoload": {
+        "psr-0": { "Argentum\\TranslationBundle": "" }
+    },
+    "target-dir": "Argentum/TranslationBundle",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    },
+    "minimum-stability": "dev"
+}

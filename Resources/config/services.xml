@@ -1,0 +1,57 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="argentum_translation.translation.loader.database.class">Argentum\TranslationBundle\Translation\DatabaseLoader</parameter>
+        <parameter key="argentum_translation.translation.translator.class">Argentum\TranslationBundle\Translation\Translator</parameter>
+        <parameter key="argentum_translation.listener.translation.class">Argentum\TranslationBundle\EventListener\TranslationListener</parameter>
+        <parameter key="argentum_translation.locales" />
+    </parameters>
+
+    <services>
+        <service id="argentum.translation.loader.database" class="%argentum_translation.translation.loader.database.class%">
+            <tag name="translation.loader" alias="db" />
+            <argument type="service" id="doctrine.orm.entity_manager" />
+        </service>
+
+        <service id="argentum.translation.translator" class="%argentum_translation.translation.translator.class%">
+            <argument type="service" id="service_container" />
+            <argument type="service" id="translator.selector" />
+            <argument type="collection" /> <!-- translation loaders -->
+            <argument type="collection">
+                <argument key="cache_dir">%kernel.cache_dir%/translations</argument>
+                <argument key="debug">%kernel.debug%</argument>
+            </argument>
+        </service>
+
+        <service id="argentum.translation.listener.translation" class="%argentum_translation.listener.translation.class%">
+            <tag name="doctrine.event_listener" event="postPersist" />
+            <tag name="doctrine.event_listener" event="postUpdate" />
+            <tag name="doctrine.event_listener" event="postRemove" />
+            <argument type="service" id="service_container" />
+        </service>
+
+        <service id="argentum.translation.admin.domain" class="Argentum\TranslationBundle\Admin\TranslationDomainAdmin">
+            <tag name="sonata.admin" manager_type="orm" group="Translation" label="Domains" label_catalogue="translation" />
+            <argument />
+            <argument>Argentum\TranslationBundle\Entity\TranslationDomain</argument>
+            <argument>SonataAdminBundle:CRUD</argument>
+            <call method="setTranslationDomain">
+                <argument>translation</argument>
+            </call>
+        </service>
+
+        <service id="argentum.translation.admin.unit" class="Argentum\TranslationBundle\Admin\TranslationUnitAdmin">
+            <tag name="sonata.admin" manager_type="orm" group="Translation" label="Units" label_catalogue="translation" />
+            <argument />
+            <argument>Argentum\TranslationBundle\Entity\TranslationUnit</argument>
+            <argument>SonataAdminBundle:CRUD</argument>
+            <call method="setTranslationDomain">
+                <argument>translation</argument>
+            </call>
+        </service>
+    </services>
+</container>

@@ -1,0 +1,16 @@
+'Translation Domain List': 'Список словарей'
+Name: Название
+Title: Заголовок
+Translations: Переводы
+Domains: Словари
+Units: Переводы
+Domain: Словарь
+Token: Фраза
+Content: 'Переведенная фраза'
+'Translation Unit List': 'Список переводов'
+Translation: Переводы
+'Go to': Перейти
+'Translation Domain Create': Создать
+'Translation Domain Edit': 'Редактировать'
+'Translation Unit Create': Создать
+'Translation Unit Edit': 'Редактировать'

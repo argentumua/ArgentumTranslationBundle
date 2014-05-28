@@ -1,0 +1,7 @@
+{% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
+
+{% block field %}
+    <a href="{{ path('admin_argentum_translation_translationunit_list', {'filter[domain][value]': object.id}) }}">
+        {{ admin.trans('Go to') }}
+    </a>
+{% endblock %}
