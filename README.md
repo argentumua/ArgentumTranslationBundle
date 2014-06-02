@@ -56,6 +56,12 @@ argentum_translation:
     locales: %locales%
 ```
 
+Make sure you have registered [KnpLabs DoctrineBehaviors Listeners](https://github.com/KnpLabs/DoctrineBehaviors#listeners) in your ```config.yml```:
+```yml
+imports:
+    - { resource: ../../vendor/knplabs/doctrine-behaviors/config/orm-services.yml }
+```
+
 And finally, create translation tables in your database:
 ```sh
 app/console doctrine:schema:update --force
