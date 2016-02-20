@@ -324,7 +324,7 @@ EOF
             foreach ($this->transLocales as $transLocale) {
                 $this->messages[$domain][$transLocale] = array();
                 /** @var TranslationDomainTranslation $domainTranslation */
-                $domainTranslation = $domainObject->translate($transLocale);
+                $domainTranslation = $domainObject->translate($transLocale, false);
                 $domainTranslation->setTitle($domain);
             }
             $this->em->persist($domainObject);
@@ -358,7 +358,7 @@ EOF
         }
 
         /** @var TranslationUnitTranslation $unitTranslation */
-        $unitTranslation = $unit->translate($locale);
+        $unitTranslation = $unit->translate($locale, false);
         if ($unitTranslation->getContent() != $content && !$isNew) {
             $this->localTransUpdated++;
         }

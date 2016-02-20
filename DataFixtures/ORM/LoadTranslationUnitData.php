@@ -48,7 +48,7 @@ class LoadTranslationUnitData implements FixtureInterface
 
             foreach ($data['translations'] as $locale => $transData) {
                 /** @var TranslationUnitTranslation $unitTrans */
-                $unitTrans = $unit->translate($locale);
+                $unitTrans = $unit->translate($locale, false);
                 $unitTrans->setContent($transData['content']);
             }
 

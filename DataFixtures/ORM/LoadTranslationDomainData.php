@@ -43,7 +43,7 @@ class LoadTranslationDomainData implements FixtureInterface
 
             foreach ($data['translations'] as $locale => $transData) {
                 /** @var TranslationDomainTranslation $domainTrans */
-                $domainTrans = $domain->translate($locale);
+                $domainTrans = $domain->translate($locale, false);
                 $domainTrans->setTitle($transData['title']);
             }
 
