@@ -61,10 +61,23 @@ Make sure you have registered [KnpLabs DoctrineBehaviors Listeners](https://gith
 imports:
     - { resource: ../../vendor/knplabs/doctrine-behaviors/config/orm-services.yml }
 ```
+and have registered A2lixTranslationFormBundle in ```app/AppKernel::registerBundles()```:
+```php
+$bundles = array(
+    // ...
+    new A2lix\TranslationFormBundle\A2lixTranslationFormBundle(),
+    // ...
+);
+```
 
 And finally, create translation tables in your database:
 ```sh
 app/console doctrine:schema:update --force
+```
+or create a migration and execute it:
+```sh
+app/console doctrine:migrations:diff
+app/console doctrine:migrations:migrate
 ```
 
 Translation editor
@@ -72,7 +85,14 @@ Translation editor
 
 Now you can use GUI for editing the translations.
 
-The bundle will automatically add additional items in the menu of your Sonata Admin.
+The bundle will automatically add additional items in the menu of your Sonata Admin. If you have customized the menu, you should add Translation group in ```config.yml```:
+```yml
+sonata_admin:
+    dashboard:
+        groups:
+            // ...
+            Translation: ~
+```
 
 The list of all domains is located at URL something like (depends on the base location of Sonata Admin in your project): ```/admin/argentum/translation/translationdomain/list```.
 
