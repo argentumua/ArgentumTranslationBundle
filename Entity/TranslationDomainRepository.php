@@ -2,6 +2,7 @@
 
 namespace Argentum\TranslationBundle\Entity;
 
+use Doctrine\DBAL\DBALException;
 use Doctrine\ORM\EntityRepository;
 
 /**
@@ -19,11 +20,15 @@ class TranslationDomainRepository extends EntityRepository
      */
     public function getAllDomains()
     {
-        $result = $this->createQueryBuilder('d')
-            ->select('d.name')
-            ->getQuery()
-            ->getArrayResult();
-        $domains = array_map('current', $result);
+        try {
+            $result = $this->createQueryBuilder('d')
+                ->select('d.name')
+                ->getQuery()
+                ->getArrayResult();
+            $domains = array_map('current', $result);
+        } catch (DBALException $e) {
+            $domains = array();
+        }
 
         return $domains;
     }
