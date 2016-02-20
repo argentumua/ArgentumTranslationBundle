@@ -171,6 +171,8 @@ EOF
             }
         }
 
+        $this->translator->clearCache();
+
         $output->writeln(
             sprintf(
                 '<info>Import completed. Total <comment>%d</comment> domains created, '
@@ -256,7 +258,13 @@ EOF
         $overridePath = $rootDir . '/Resources/%s/translations';
 
         if ($all) {
-            foreach (array('Symfony\Component\Validator\Validator', 'Symfony\Component\Form\Form') as $class) {
+            $componentClasses = array(
+                'Symfony\Component\Validator\Validator',
+                'Symfony\Component\Form\Form',
+                'Symfony\Component\Security\Core\Security',
+            );
+
+            foreach ($componentClasses as $class) {
                 if (class_exists($class)) {
                     $r = new \ReflectionClass($class);
                     $this->dirs[] = sprintf($translationsPath, dirname($r->getFilename()));
@@ -265,12 +273,19 @@ EOF
         }
 
         foreach ($bundles as $bundleName) {
-            $bundle = $app->getKernel()->getBundle($bundleName);
-            if (is_dir($dir = sprintf($translationsPath, $bundle->getPath()))) {
-                $this->dirs[] = $dir;
+            $bundleInstances = $app->getKernel()->getBundle($bundleName, false);
+            if (!is_array($bundleInstances)) {
+                $bundleInstances = array($bundleInstances);
             }
-            if (is_dir($dir = sprintf($overridePath, $bundleName))) {
-                $this->dirs[] = $dir;
+            $bundleInstances = array_reverse($bundleInstances);
+
+            foreach ($bundleInstances as $bundle) {
+                if (is_dir($dir = sprintf($translationsPath, $bundle->getPath()))) {
+                    $this->dirs[] = $dir;
+                }
+                if (is_dir($dir = sprintf($overridePath, $bundle->getName()))) {
+                    $this->dirs[] = $dir;
+                }
             }
         }
 
