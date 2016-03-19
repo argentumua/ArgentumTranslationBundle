@@ -15,20 +15,19 @@
     "require": {
         "php": ">=5.4.0",
         "symfony/symfony": ">=2.3",
-        "symfony/framework-bundle": ">=2.3",
         "symfony/monolog-bundle": ">=2.3",
         "twig/twig": ">=1.10",
         "doctrine/common": ">=2.2",
         "doctrine/orm": ">=2.2",
         "knplabs/doctrine-behaviors": ">=1.0",
         "a2lix/translation-form-bundle": ">=2.0",
-        "sonata-project/admin-bundle": ">=2.0",
+        "sonata-project/admin-bundle": ">=2.0@dev",
         "sonata-project/doctrine-orm-admin-bundle": ">=2.2"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": ">=2.2",
-        "liip/functional-test-bundle": "1.0.*@dev",
-        "satooshi/php-coveralls": "dev-master"
+        "liip/functional-test-bundle": ">=1.1.0",
+        "satooshi/php-coveralls": "1.0.*"
     },
     "autoload": {
         "psr-0": { "Argentum\\TranslationBundle": "" }
@@ -38,6 +37,5 @@
         "branch-alias": {
             "dev-master": "1.0.x-dev"
         }
-    },
-    "minimum-stability": "dev"
+    }
 }
