@@ -47,6 +47,7 @@ class TranslationUnitAdmin extends Admin
         $datagridMapper
             ->add('domain')
             ->add('token')
+            ->add('translations.content', null, array('label' => 'Content'))
         ;
     }
 
