@@ -23,7 +23,7 @@ class TranslatorPass implements CompilerPassInterface
             $translatorDefault = $container->findDefinition('translator.default');
 
             $translator
-                ->replaceArgument(2, $translatorDefault->getArgument(2))
+                ->setArguments($translatorDefault->getArguments())
                 ->setMethodCalls($translatorDefault->getMethodCalls())
                 ->addMethodCall('setLocales', array($container->getParameter('locales')))
                 ->addMethodCall('addDatabaseResources', array());
