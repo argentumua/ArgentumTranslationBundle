@@ -31,14 +31,14 @@ class TranslationExportCommandTest extends BaseCommandTest
 
     public function testExportSuccess()
     {
-        $this->commandTester->execute(array(
+        $statusCode = $this->commandTester->execute(array(
             'domain' => array('domain'),
             '--locales' => 'ru,en',
             '--format' => 'yml',
             '--dir' => $this->getTempDir(),
         ));
 
-        $this->assertEquals(0, $this->commandTester->getStatusCode());
+        $this->assertEquals(0, $statusCode);
         $this->assertRegExp('/Exporting domain:/', $this->commandTester->getDisplay());
         $this->assertRegExp('/All done/', $this->commandTester->getDisplay());
 

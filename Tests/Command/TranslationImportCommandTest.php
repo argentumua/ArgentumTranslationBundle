@@ -30,13 +30,13 @@ class TranslationImportCommandTest extends BaseCommandTest
     {
         file_put_contents($this->getTempDir() . '/test.ru.yml', "'test token' : 'test translation'\n");
 
-        $this->commandTester->execute(array(
+        $statusCode = $this->commandTester->execute(array(
             'domain' => array('test'),
             '--locales' => 'ru',
             '--dir' => $this->getTempDir(),
         ));
 
-        $this->assertEquals(0, $this->commandTester->getStatusCode());
+        $this->assertEquals(0, $statusCode);
         $this->assertRegExp('/Importing.*test.ru/', $this->commandTester->getDisplay());
         $this->assertRegExp('/Import completed/', $this->commandTester->getDisplay());
         $this->assertRegExp('/Total (<[^>]+>)?1(<[^>]+>)? domains created/', $this->commandTester->getDisplay());
@@ -53,12 +53,12 @@ class TranslationImportCommandTest extends BaseCommandTest
 
     public function testImportBundle()
     {
-        $this->commandTester->execute(array(
+        $statusCode = $this->commandTester->execute(array(
             'domain' => array('translation'),
             '--bundles' => 'ArgentumTranslationBundle',
         ));
 
-        $this->assertEquals(0, $this->commandTester->getStatusCode());
+        $this->assertEquals(0, $statusCode);
         $this->assertRegExp('/Importing.*translation.ru/', $this->commandTester->getDisplay());
         $this->assertRegExp('/Import completed/', $this->commandTester->getDisplay());
         $this->assertRegExp('/Total (<[^>]+>)?1(<[^>]+>)? domains created/', $this->commandTester->getDisplay());
