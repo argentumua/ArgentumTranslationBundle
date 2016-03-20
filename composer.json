@@ -22,7 +22,7 @@
         "knplabs/doctrine-behaviors": ">=1.0",
         "a2lix/translation-form-bundle": ">=2.0",
         "sonata-project/admin-bundle": ">=2.0@dev",
-        "sonata-project/doctrine-orm-admin-bundle": ">=2.2"
+        "sonata-project/doctrine-orm-admin-bundle": ">=2.2@dev"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": ">=2.2",

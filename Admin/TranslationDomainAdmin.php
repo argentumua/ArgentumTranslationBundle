@@ -22,9 +22,13 @@ class TranslationDomainAdmin extends Admin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
+        $translationsType = method_exists('Symfony\Component\Form\FormTypeInterface', 'getName')
+            ? 'a2lix_translations'
+            : 'A2lix\TranslationFormBundle\Form\Type\TranslationsType';
+
         $formMapper
             ->add('name')
-            ->add('translations', 'a2lix_translations', array(
+            ->add('translations', $translationsType, array(
                 'translation_domain' => $this->translationDomain
             ))
         ;
