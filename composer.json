@@ -21,10 +21,11 @@
         "doctrine/orm": ">=2.2",
         "knplabs/doctrine-behaviors": ">=1.0",
         "a2lix/translation-form-bundle": ">=2.0",
-        "sonata-project/admin-bundle": ">=2.0@dev",
-        "sonata-project/doctrine-orm-admin-bundle": ">=2.2@dev"
+        "sonata-project/admin-bundle": ">=2.0",
+        "sonata-project/doctrine-orm-admin-bundle": ">=2.2"
     },
     "require-dev": {
+        "phpunit/phpunit": "^4.8.35|^5.4.3",
         "doctrine/doctrine-fixtures-bundle": ">=2.2",
         "liip/functional-test-bundle": ">=1.1.0",
         "satooshi/php-coveralls": "1.0.*"
