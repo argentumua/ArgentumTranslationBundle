@@ -20,6 +20,21 @@ class Translator extends BaseTranslator
     private $locales;
 
     /**
+     * @var EntityManager
+     */
+    private $entityManager;
+
+    /**
+     * Set EntityManager.
+     *
+     * @param EntityManager $entityManager
+     */
+    public function setEntityManager(EntityManager $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
+    /**
      * Adds all database resources.
      */
     public function addDatabaseResources()
@@ -96,11 +111,8 @@ class Translator extends BaseTranslator
      */
     public function getDomains()
     {
-        /** @var EntityManager $em */
-        $em = $this->container->get('doctrine')->getManager();
-
         /** @var TranslationDomainRepository $domainRepository */
-        $domainRepository = $em->getRepository('ArgentumTranslationBundle:TranslationDomain');
+        $domainRepository = $this->entityManager->getRepository('ArgentumTranslationBundle:TranslationDomain');
 
         $domains = $domainRepository->getAllDomains();
 

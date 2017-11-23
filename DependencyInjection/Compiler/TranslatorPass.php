@@ -4,6 +4,7 @@ namespace Argentum\TranslationBundle\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
+use Symfony\Component\DependencyInjection\Reference;
 
 /**
  * TranslatorPass
@@ -26,6 +27,7 @@ class TranslatorPass implements CompilerPassInterface
                 ->setArguments($translatorDefault->getArguments())
                 ->setMethodCalls($translatorDefault->getMethodCalls())
                 ->addMethodCall('setLocales', array($container->getParameter('locales')))
+                ->addMethodCall('setEntityManager', array(new Reference('doctrine.orm.entity_manager')))
                 ->addMethodCall('addDatabaseResources', array());
 
             $container->setAlias('translator', 'argentum.translation.translator');
